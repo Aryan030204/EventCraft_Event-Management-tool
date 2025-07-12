@@ -1,16 +1,13 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const ticketSchema = new mongoose.Schema({
-  ticketId: String,
-  user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-  event: { type: mongoose.Schema.Types.ObjectId, ref: "Event" },
-  registeredAt: Date,
-  startDate: Date,
-  endDate: Date,
-  feedback: {
-    like: Boolean,
-    comment: String,
-  },
-});
+  event: { type: mongoose.Schema.Types.ObjectId, ref: 'Event' },
+  attendee: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+  uniqueId: { type: String, unique: true },
+  registrationData: {
+    name: String,
+    age: Number
+  }
+}, { timestamps: true });
 
-module.exports = mongoose.model("Ticket", ticketSchema);
+module.exports = mongoose.model('Ticket', ticketSchema);

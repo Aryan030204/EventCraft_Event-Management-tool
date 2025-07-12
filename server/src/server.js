@@ -1,26 +1,32 @@
+// ✅ server.js
 const express = require("express");
+const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const cors = require("cors");
 const connectDB = require("./utils/db");
 
-const authRoutes = require("./routes/authRoutes");
-const organizerRoutes = require("./routes/organizerRoutes");
+// Load env variables
+dotenv.config();
+
+// Route imports
 const attendeeRoutes = require("./routes/attendeeRoutes");
+const organizerRoutes = require("./routes/organizerRoutes");
 const adminRoutes = require("./routes/adminRoutes");
 
-dotenv.config();
+// Initialize app
 const app = express();
 
+// Middleware
 app.use(cors());
 app.use(express.json());
 
 // Routes
-app.use("/api/auth", authRoutes);
-app.use("/api/organizer", organizerRoutes);
 app.use("/api/attendee", attendeeRoutes);
+app.use("/api/organizer", organizerRoutes);
 app.use("/api/admin", adminRoutes);
 
-app.listen(process.env.PORT, () => {
-  connectDB();
-  console.log(`Server running on port ${process.env.PORT}`);
+// Connect DB & start server
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });

@@ -10,6 +10,7 @@ const connectDB = async () => {
     console.error(err);
   }
 };
+connectDB();
 
 module.exports = {
   connectDB,
