@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 const feedbackSchema = new mongoose.Schema({
   event: { type: mongoose.Schema.Types.ObjectId, ref: 'Event' },
   user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-  like: Boolean,
   comment: String
 }, { timestamps: true });
 
