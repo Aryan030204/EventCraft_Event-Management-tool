@@ -6,6 +6,7 @@ const connectDB = require("./utils/db");
 const cookieParser = require("cookie-parser");
 const authRouter = require("./routes/authRoutes");
 const organizerRouter = require("./routes/organizerRoutes");
+const userRouter = require("./routes/userRoutes");
 
 // Load env variables
 dotenv.config();
@@ -20,6 +21,7 @@ app.use(cookieParser());
 
 //routes
 app.use("/api/auth/", authRouter);
+app.use("/api/", userRouter);
 app.use("/api/", organizerRouter);
 
 // Connect DB & start server
