@@ -17,6 +17,11 @@ const eventSchema = new mongoose.Schema({
     type: Date,
     required: true,
   },
+  scheduledBy: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
   type: {
     type: String,
     enum: ["commercial", "education", "conference", "kids", "music"],
@@ -32,6 +37,6 @@ const eventSchema = new mongoose.Schema({
   },
 });
 
-const Event = mongoose.model(eventSchema, "Event");
+const Event = mongoose.model("Event", eventSchema);
 
 module.exports = Event;
