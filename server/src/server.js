@@ -7,6 +7,7 @@ const cookieParser = require("cookie-parser");
 const authRouter = require("./routes/authRoutes");
 const organizerRouter = require("./routes/organizerRoutes");
 const userRouter = require("./routes/userRoutes");
+const attendeeRouter = require("./routes/attendeeRoutes");
 
 // Load env variables
 dotenv.config();
@@ -23,6 +24,7 @@ app.use(cookieParser());
 app.use("/api/auth/", authRouter);
 app.use("/api/", userRouter);
 app.use("/api/", organizerRouter);
+app.use("/api/", attendeeRouter);
 
 // Connect DB & start server
 const PORT = process.env.PORT || 5000;
