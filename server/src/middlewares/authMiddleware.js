@@ -6,12 +6,12 @@ const authMiddleware = async (req, res, next) => {
   try {
     const token = req.cookies.token;
     const decodedMsg = jwt.verify(token, process.env.JWT_SECRET);
-    console.log(token);
+    // console.log(token);
     
     const { _id } = decodedMsg;
 
     const user = await User.findById(_id);
-    console.log(user);
+    // console.log(user);
     
     if (!user) {
       throw new Error("user not found");

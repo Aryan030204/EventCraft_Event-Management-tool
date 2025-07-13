@@ -10,11 +10,11 @@ const eventSchema = new mongoose.Schema({
     required: true,
   },
   startDate: {
-    type: String,
+    type: Date,
     required: true,
   },
   endDate: {
-    type: String,
+    type: Date,
     required: true,
   },
   scheduledBy: {
@@ -36,6 +36,12 @@ const eventSchema = new mongoose.Schema({
     required: true,
     default: 0,
   },
+  ticketsBooked: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "attendee",
+    },
+  ],
 });
 
 const Event = mongoose.model("Event", eventSchema);

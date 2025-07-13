@@ -23,11 +23,19 @@ const bookTicket = async (req, res) => {
   try {
     const { eventId } = req.params;
     const { _id } = req.user;
-    const event = await Event.findOne({ _id: eventId });
-    if (!event || !event.registrations) {
+    const event = await Event.findById(eventId);
+    console.log(event);
+
+    if (!event) {
       return res.status(400).json({
         success: false,
         message: "Event not found or registration is closed",
+      });
+    }
+    if (!event.registrations) {
+      return res.status(400).json({
+        success: false,
+        message: "Event registration is closed",
       });
     }
     const alreadyBooked = await Ticket.findOne({ eventId, userId: _id });
@@ -40,8 +48,8 @@ const bookTicket = async (req, res) => {
     const ticket = await Ticket.create({
       eventId: event._id,
       userId: _id,
-      startDate: new Date(event.startDate),
-      endDate: new Date(event.endDate),
+      startDate: event.startDate,
+      endDate: event.endDate,
     });
     event.ticketsBooked.push(_id);
     await event.save();
@@ -63,7 +71,7 @@ const cancelTicket = async (req, res) => {
   try {
     const { eventId } = req.params;
     const { _id } = req.user;
-    const event = Event.findOne({ _id: eventId });
+    const event = await Event.findOne({ _id: eventId });
     if (!event) {
       return res
         .status(404)
@@ -74,12 +82,7 @@ const cancelTicket = async (req, res) => {
       eventId,
     });
 
-    if (!deleted) {
-      return res
-        .status(400)
-        .json({ success: false, message: "Ticket not found" });
-    }
-    event.bookTickets.pull(_id);
+    event.ticketsBooked.pull(_id);
     await event.save();
     res.status(200).json({
       success: true,
@@ -99,6 +102,13 @@ const giveFeedback = async (req, res) => {
     const { eventId } = req.params;
     const { _id } = req.user;
     const { comment } = req.body;
+    const event = await Event.findOne({ _id: eventId });
+    if (!event.ticketsBooked.includes(_id)) {
+      return res.status(401).json({
+        success: false,
+        message: "You haven't booked any ticket for this event",
+      });
+    }
     const feedback = await Feedback.create({
       userId: _id,
       eventId: eventId,
@@ -124,7 +134,7 @@ const getMyBookedEvents = async (req, res) => {
     const events = await Ticket.find({ userId: _id });
     res.status(200).json({
       success: true,
-      message: "Events booked successfully",
+      message: "Events booked by you fetched successfully",
       events,
     });
   } catch (err) {
