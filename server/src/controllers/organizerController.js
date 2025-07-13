@@ -14,6 +14,8 @@ const createEvent = async (req, res) => {
     const { _id } = req.user;
     const event = await Event.create({
       ...req.body,
+      startDate: new Date(startDate),
+      endDate: new Date(endDate),
       scheduledBy: _id,
     });
     res.status(201).json({
@@ -33,6 +35,12 @@ const createEvent = async (req, res) => {
 const updateEvent = async (req, res) => {
   try {
     const { eventId } = req.params;
+    if (req.body.startDate) {
+      req.body.startDate = new Date(req.body.startDate);
+    }
+    if (req.body.endDate) {
+      req.body.endDate = new Date(req.body.endDate);
+    }
     const event = await Event.findByIdAndUpdate(eventId, req.body, {
       new: true,
     });
