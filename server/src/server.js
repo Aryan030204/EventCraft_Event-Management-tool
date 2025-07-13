@@ -3,7 +3,9 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const cors = require("cors");
 const connectDB = require("./utils/db");
+const cookieParser = require("cookie-parser");
 const authRouter = require("./routes/authRoutes");
+const organizerRouter = require("./routes/organizerRoutes");
 
 // Load env variables
 dotenv.config();
@@ -14,9 +16,11 @@ const app = express();
 // Middleware
 app.use(cors());
 app.use(express.json());
+app.use(cookieParser());
 
 //routes
-app.use("/api/", authRouter);
+app.use("/api/auth/", authRouter);
+app.use("/api/", organizerRouter);
 
 // Connect DB & start server
 const PORT = process.env.PORT || 5000;

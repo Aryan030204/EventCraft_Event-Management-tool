@@ -10,11 +10,11 @@ const eventSchema = new mongoose.Schema({
     required: true,
   },
   startDate: {
-    type: Date,
+    type: String,
     required: true,
   },
   endDate: {
-    type: Date,
+    type: String,
     required: true,
   },
   scheduledBy: {
@@ -34,6 +34,7 @@ const eventSchema = new mongoose.Schema({
   price: {
     type: Number,
     required: true,
+    default: 0,
   },
 });
 
