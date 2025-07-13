@@ -40,8 +40,8 @@ const bookTicket = async (req, res) => {
     const ticket = await Ticket.create({
       eventId: event._id,
       userId: _id,
-      startDate: event.startDate,
-      endDate: event.endDate,
+      startDate: new Date(event.startDate),
+      endDate: new Date(event.endDate),
     });
     event.ticketsBooked.push(_id);
     await event.save();
