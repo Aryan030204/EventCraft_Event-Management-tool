@@ -1,36 +1,30 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Landing from "./pages/Landing";
+import Navbar from "./components/Navbar";
+import Homepage from "./pages/Homepage";
+import Footer from "./components/Footer";
+import AboutUs from "./pages/AboutUs";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Login from "./pages/Login";
-import Register from "./pages/Register";
-import Discover from "./pages/Discover";
-import AttendeeEventDetails from "./pages/AttendeeEventDetails";
-import Ticket from "./pages/Ticket";
-import AttendeeMyEvents from "./pages/AttendeeMyEvents";
-import GiveFeedback from "./pages/GiveFeedback";
-import OrganizerDashboard from "./pages/OrganizerDashboard";
-import CreateEvent from "./pages/CreateEvent";
-import EditEvent from "./pages/EditEvent";
-import AdminDashboard from "./pages/AdminDashboard";
+import Signup from "./pages/Signup";
 
 function App() {
-    return (
+  return (
+    <div className="w-full h-[100vh] flex flex-col items-center">
       <Router>
-        <Routes>
-          <Route path="/" element={<Landing />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/discover" element={<Discover />} />
-          <Route path="/event/:id" element={<AttendeeEventDetails />} />
-          <Route path="/ticket/:id" element={<Ticket />} />
-          <Route path="/myevents" element={<AttendeeMyEvents />} />
-          <Route path="/feedback/:id" element={<GiveFeedback />} />
-          <Route path="/organizer/dashboard" element={<OrganizerDashboard />} />
-          <Route path="/organizer/create" element={<CreateEvent />} />
-          <Route path="/organizer/edit/:id" element={<EditEvent />} />
-          <Route path="/admin" element={<AdminDashboard />} />
-        </Routes>
+        <Navbar />
+        <main className="flex-grow">
+          <Routes>
+            <Route path="/" element={<Homepage />} />
+            <Route path="/about" element={<AboutUs />} />
+            <Route path="/policy" element={<PrivacyPolicy />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+          </Routes>
+        </main>
+        <Footer />
       </Router>
-    )
-  }
+    </div>
+  );
+}
 
-  export default App;
+export default App;
