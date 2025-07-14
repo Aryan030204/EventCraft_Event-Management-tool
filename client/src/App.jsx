@@ -8,6 +8,8 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
 import Feedback from "./pages/Feedback";
+import CreateEvent from "./pages/CreateEvent";
+import AllEvents from "./pages/AllEvents";
 
 function App() {
   return (
@@ -23,6 +25,8 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/feedback/:eventid" element={<Feedback />} />
+            <Route path="/schedule" element={<CreateEvent />} />
+            <Route path="/organizer/events" element={<AllEvents />} />
           </Routes>
         </main>
         <Footer />
