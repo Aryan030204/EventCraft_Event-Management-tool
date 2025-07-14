@@ -1,9 +1,32 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../assets/logo.png";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import SERVER_URI from "../utils/constants";
+import { toast, ToastContainer } from "react-toastify";
+import Dashboard from "../pages/Dashboard";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  let user = JSON.parse(localStorage.getItem("user"));
+  useEffect(() => {
+    if (user) {
+      setIsLoggedIn(true);
+    }
+  }, []);
+  const handleLogout = async (req, res) => {
+    await axios.post(
+      SERVER_URI + "/auth/logout",
+      {},
+      {
+        withCredentials: true,
+      }
+    );
+    setIsLoggedIn(!isLoggedIn);
+    localStorage.removeItem("user");
+    toast.success("logged out successfully");
+  };
 
   return (
     <nav className="bg-blue-800 flex justify-between shadow-md z-50 w-full">
@@ -31,13 +54,28 @@ const Navbar = () => {
 
         {/* Right side */}
         <div className="hidden md:flex items-center gap-4">
-          <span className="text-white w-[7rem] font-bold">Hello, Aryan</span>
-          <Link
-            to={"/login"}
-            className="text-white font-bold px-4 py-1.5 ml-4 hover:bg-red-600 bg-red-500 rounded-lg transition"
-          >
-            Login
-          </Link>
+          {isLoggedIn && (
+            <div className="flex items-center justify-center">
+              <span className=" text-white font-semibold mb-2 w-[8rem]">
+                Hello, {user.firstName}
+              </span>
+              <button
+                onClick={() => handleLogout()}
+                className="bg-red-500 p-1 font-semibold text-white rounded-sm hover:bg-red-600 cursor-pointer"
+              >
+                Logout
+              </button>
+              <Link to={"/dashboard"} className="ml-5 bg-white p-2 rounded-xl hover:bg-blue-950 hover:text-white font-bold transition ease-in-out duration-200" element={<Dashboard/>}>Dashboard</Link>
+            </div>
+          )}
+          {!isLoggedIn && (
+            <Link
+              to={"/login"}
+              className="text-white font-bold px-4 py-1.5 ml-4 hover:bg-red-600 bg-red-500 rounded-lg transition"
+            >
+              Login
+            </Link>
+          )}
         </div>
 
         {/* Mobile Hamburger */}
@@ -53,10 +91,24 @@ const Navbar = () => {
             <Link>
               <li className="hover:underline">Privacy Policy</li>
             </Link>
-            <span className="block text-white mb-2">Hello, Aryan</span>
-            <Link to={"/signup"} className="hover:underline">
-              Login
-            </Link>
+            {isLoggedIn && (
+              <>
+                <span className="block text-white font-semibold mb-2 w-[8rem]">
+                  Hello, {user.firstName}
+                </span>
+                <button
+                  onClick={() => handleLogout()}
+                  className="bg-red-500 p-2 font-semibold text-white rounded-sm hover:bg-red-600 cursor-pointer"
+                >
+                  Logout
+                </button>
+              </>
+            )}
+            {!isLoggedIn && (
+              <Link to={"/signup"} className="hover:underline">
+                Login
+              </Link>
+            )}
           </ul>
         </div>
       )}
@@ -87,6 +139,7 @@ const Navbar = () => {
           </svg>
         </button>
       </div>
+      <ToastContainer />
     </nav>
   );
 };

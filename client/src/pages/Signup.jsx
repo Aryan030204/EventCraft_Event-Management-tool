@@ -1,5 +1,9 @@
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import axios from "axios";
+import SERVER_URI from "../utils/constants";
+import { toast, ToastContainer } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -9,6 +13,7 @@ const Signup = () => {
     password: "",
     role: "attendee", // default role
   });
+  const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -19,10 +24,29 @@ const Signup = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // Send signup request here
     console.log("Signing up with:", formData);
+    try {
+      const res = await axios.post(SERVER_URI + "/auth/signup", formData, {
+        withCredentials: true,
+      });
+      console.log(res);
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: "",
+        role: "attendee",
+      });
+      toast.success("Account created successfully");
+      setTimeout(() => {
+        navigate("/");
+      }, 2000);
+    } catch (err) {
+      toast.error(err.message);
+    }
   };
 
   return (
@@ -133,6 +157,7 @@ const Signup = () => {
           </a>
         </p>
       </div>
+      <ToastContainer />
     </div>
   );
 };

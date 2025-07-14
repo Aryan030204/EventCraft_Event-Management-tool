@@ -1,5 +1,9 @@
+import axios from "axios";
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { toast, ToastContainer } from "react-toastify";
+import SERVER_URI from "../utils/constants";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -14,11 +18,24 @@ const Login = () => {
       [e.target.name]: e.target.value,
     }));
   };
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Logging in with:", formData);
-    
+    try {
+      const res = await axios.post(SERVER_URI + "/auth/login", formData, {
+        withCredentials: true,
+      });
+      console.log(res.data.user);
+      toast.success("logged in successfully");
+      localStorage.setItem("user", JSON.stringify(res.data.user));
+      setTimeout(() => {
+        navigate("/");
+      }, 2000);
+    } catch (err) {
+      toast.error(err.message);
+    }
   };
 
   return (
@@ -98,6 +115,7 @@ const Login = () => {
           </a>
         </p>
       </div>
+      <ToastContainer />
     </div>
   );
 };
