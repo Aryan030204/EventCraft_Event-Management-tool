@@ -6,6 +6,7 @@ const {
   cancelTicket,
   giveFeedback,
   getMyBookedEvents,
+  getEventById,
 } = require("../controllers/attendeeController");
 const authMiddleware = require("../middlewares/authMiddleware");
 
@@ -40,6 +41,13 @@ attendeeRouter.get(
   authMiddleware,
   checkRole("attendee"),
   getMyBookedEvents
+);
+
+attendeeRouter.get(
+  "/events/:eventid",
+  authMiddleware,
+  checkRole("attendee"),
+  getEventById
 );
 
 module.exports = attendeeRouter;

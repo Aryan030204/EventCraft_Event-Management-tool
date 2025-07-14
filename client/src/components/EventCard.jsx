@@ -1,24 +1,54 @@
-import React from "react";
+import axios from "axios";
+import SERVER_URI from "../utils/constants";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
-const EventCard = ({ event, onBook }) => {
-  const { name, startDate, endDate, price, registrations } = event;
+const EventCard = ({ event, onBook, isBooked }) => {
+  const { _id, name, startDate, endDate, price, registrations } = event;
+  const [ended, setEnded] = useState(false);
+  const user = JSON.parse(localStorage.getItem("user"));
+  console.log(event.ticketsBooked);
 
+  useEffect(() => {
+    const today = new Date();
+    const eventEnd = new Date(endDate);
+    if (today > eventEnd && event.ticketsBooked.includes(user._id)) {
+      setEnded(true);
+    }
+  }, []);
+
+  const onCancel = async () => {
+    await axios.delete(SERVER_URI + `/ticket/${event._id}/cancel`, {
+      withCredentials: true,
+    });
+  };
   return (
     <div className="bg-white shadow-md rounded-xl p-6 mb-6 w-full max-w-xl border border-gray-200">
       <div className="flex justify-between items-center mb-3">
         <h2 className="text-2xl font-bold text-gray-800">{name}</h2>
-        <span
-          className={`text-sm font-semibold px-3 py-1 rounded-full ${
-            registrations
-              ? "bg-green-100 text-green-700"
-              : "bg-red-100 text-red-700"
-          }`}
-        >
-          {registrations ? "Registrations Open" : "Registrations Closed"}
-        </span>
+        <div className="flex flex-col items-center gap-[1rem]">
+          <span
+            className={`text-sm font-semibold p-4 text-center py-1 rounded-full ${
+              registrations
+                ? "bg-green-100 text-green-700"
+                : "bg-red-100 text-red-700"
+            }`}
+          >
+            {registrations ? "Registrations Open" : "Registrations Closed"}
+          </span>
+        </div>
       </div>
 
-      <div className="text-gray-600 space-y-1">
+      <div className="text-gray-600">
+        {ended && (
+          <Link
+            to={`/feedback/${_id}`}
+            target="_blank"
+            className="bg-purple-800 hover:bg-purple-900 text-white font-bold p-2 inline-block text-sm rounded-lg text-center"
+          >
+            Give Feedback
+          </Link>
+        )}
         <p>
           <strong>Start:</strong> {new Date(startDate).toLocaleDateString()}
         </p>
@@ -30,19 +60,27 @@ const EventCard = ({ event, onBook }) => {
         </p>
       </div>
 
-      <button
-        onClick={() => onBook(event._id)}
-        disabled={!registrations}
-        className={`mt-5 w-full py-2 px-4 text-white font-semibold rounded-lg transition ${
-          registrations
-            ? "bg-blue-600 hover:bg-blue-700"
-            : "bg-gray-400 cursor-not-allowed"
-        }`}
-      >
-        Book Ticket
-      </button>
+      {isBooked ? (
+        <button
+          onClick={() => onCancel()}
+          className="mt-5 w-full py-2 px-4 text-white font-semibold rounded-lg transition bg-red-600 hover:bg-red-700"
+        >
+          Cancel Ticket
+        </button>
+      ) : (
+        <button
+          onClick={() => onBook(_id)}
+          disabled={!registrations}
+          className={`mt-5 w-full py-2 px-4 text-white font-semibold rounded-lg transition ${
+            registrations
+              ? "bg-blue-600 hover:bg-blue-700"
+              : "bg-gray-400 cursor-not-allowed"
+          }`}
+        >
+          Book Ticket
+        </button>
+      )}
     </div>
   );
 };
-
 export default EventCard;

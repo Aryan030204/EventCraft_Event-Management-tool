@@ -146,10 +146,34 @@ const getMyBookedEvents = async (req, res) => {
   }
 };
 
+const getEventById = async (req, res) => {
+  try {
+    const { eventid } = req.params;
+    const event = await Event.findOne({ _id: eventid });
+    if (!event) {
+      return res.status(404).json({
+        success: false,
+        message: "Event not found",
+      });
+    }
+    res.status(200).json({
+      success: true,
+      message: "Event fetched successfully",
+      event,
+    });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: "Error fetching event",
+      error: err.message,
+    });
+  }
+};
 module.exports = {
   discoverAllEvents,
   bookTicket,
   cancelTicket,
   giveFeedback,
   getMyBookedEvents,
+  getEventById,
 };
