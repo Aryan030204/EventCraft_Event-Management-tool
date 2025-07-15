@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import logo from "../assets/logo.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import SERVER_URI from "../utils/constants";
 import { toast, ToastContainer } from "react-toastify";
@@ -11,6 +11,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState(null); // ✅ useState for user
+  const navigate = useNavigate();
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
@@ -33,6 +34,7 @@ const Navbar = () => {
     setUser(null); // ✅ reset user state
     localStorage.removeItem("user");
     toast.success("logged out successfully");
+    navigate("/");
   };
 
   return (
