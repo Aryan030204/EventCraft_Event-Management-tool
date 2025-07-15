@@ -40,7 +40,7 @@ const Signup = () => {
         password: "",
         role: "attendee",
       });
-      toast.success("Account created successfully");
+      toast.success("Account created successfully!");
       setTimeout(() => {
         navigate("/login");
       }, 2000);
@@ -50,9 +50,9 @@ const Signup = () => {
   };
 
   return (
-    <div className="flex items-center justify-center px-4 bg-gray-50 m-10">
-      <div className="bg-white shadow-2xl rounded-2xl p-6 sm:p-10 w-full max-w-lg">
-        <h2 className="text-3xl font-bold text-center text-green-600 mb-6">
+    <div className="flex items-center justify-center px-4 m-10">
+      <div className="bg-white shadow-xl rounded-3xl p-8 sm:p-12 w-full max-w-lg">
+        <h2 className="text-3xl font-bold text-center text-blue-600 mb-6">
           Create Your EventCraft Account
         </h2>
 
@@ -68,7 +68,8 @@ const Signup = () => {
                 required
                 value={formData.firstName}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
+                placeholder="Alex"
+                className="w-full px-4 py-2 border border-gray-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-blue-600"
               />
             </div>
 
@@ -82,7 +83,8 @@ const Signup = () => {
                 required
                 value={formData.lastName}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
+                placeholder="Smith"
+                className="w-full px-4 py-2 border border-gray-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-blue-600"
               />
             </div>
           </div>
@@ -97,7 +99,7 @@ const Signup = () => {
               required
               value={formData.email}
               onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
+              className="w-full px-4 py-2 border border-gray-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-blue-600"
               placeholder="example@email.com"
             />
           </div>
@@ -112,14 +114,14 @@ const Signup = () => {
               required
               value={formData.password}
               onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
+              className="w-full px-4 py-2 border border-gray-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-blue-600"
               placeholder="••••••••"
             />
             <div
               className="absolute right-3 top-[38px] cursor-pointer text-gray-600"
               onClick={() => setShowPassword(!showPassword)}
             >
-              {showPassword ? <FaEyeSlash size={20} /> : <FaEye size={20} />}
+              {showPassword ? <FaEyeSlash size={20} className="text-blue-600 rounded-full"/> : <FaEye size={20} className="text-blue-600 rounded-full"/>}
             </div>
           </div>
 
@@ -131,7 +133,7 @@ const Signup = () => {
               name="role"
               value={formData.role}
               onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
+              className="w-full px-4 py-2 border border-gray-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-blue-600"
             >
               <option value="attendee">Attendee</option>
               <option value="organizer">Organizer</option>
@@ -141,7 +143,7 @@ const Signup = () => {
 
           <button
             type="submit"
-            className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2.5 rounded-lg transition duration-300"
+            className="cursor-pointer w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 rounded-3xl transition duration-300"
           >
             Sign Up
           </button>
@@ -151,7 +153,7 @@ const Signup = () => {
           Already have an account?{" "}
           <a
             href="/login"
-            className="text-green-600 hover:underline font-medium"
+            className="text-blue-600 hover:underline font-medium"
           >
             Login
           </a>

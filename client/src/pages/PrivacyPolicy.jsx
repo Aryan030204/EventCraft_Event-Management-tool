@@ -2,8 +2,9 @@ import React from "react";
 
 const PrivacyPolicy = () => {
   return (
-    <div className="max-w-4xl mx-auto px-4 py-12 text-gray-800">
-      <h1 className="text-4xl font-bold mb-6 text-center">Privacy Policy</h1>
+    <div className="max-w-4xl mx-auto px-4 py-12 bg-blue-50 text-gray-800">
+      <div className="max-w-5xl mx-auto bg-white p-10 rounded-3xl shadow-md">
+      <h1 className="text-4xl font-bold mb-6 text-indigo-600 text-center">Privacy Policy</h1>
 
       <p className="mb-4">
         At <span className="font-semibold">EventCraft</span>, we value your
@@ -12,7 +13,7 @@ const PrivacyPolicy = () => {
         you use our platform.
       </p>
 
-      <h2 className="text-2xl font-semibold mt-8 mb-2">
+      <h2 className="text-2xl text-indigo-600 font-semibold mt-8 mb-2">
         1. Information We Collect
       </h2>
       <p className="mb-4">
@@ -22,7 +23,7 @@ const PrivacyPolicy = () => {
         event creation, and ticket booking.
       </p>
 
-      <h2 className="text-2xl font-semibold mt-8 mb-2">
+      <h2 className="text-2xl text-indigo-600 font-semibold mt-8 mb-2">
         2. How We Use Your Information
       </h2>
       <p className="mb-4">
@@ -32,7 +33,7 @@ const PrivacyPolicy = () => {
         information to third parties.
       </p>
 
-      <h2 className="text-2xl font-semibold mt-8 mb-2">
+      <h2 className="text-2xl text-indigo-600 font-semibold mt-8 mb-2">
         3. Cookies & Session Management
       </h2>
       <p className="mb-4">
@@ -41,21 +42,21 @@ const PrivacyPolicy = () => {
         interaction with the platform.
       </p>
 
-      <h2 className="text-2xl font-semibold mt-8 mb-2">4. Data Security</h2>
+      <h2 className="text-2xl text-indigo-600 font-semibold mt-8 mb-2">4. Data Security</h2>
       <p className="mb-4">
         We implement industry-standard security measures to protect your data
         against unauthorized access, modification, or deletion. Sensitive data
         like passwords are encrypted and securely stored.
       </p>
 
-      <h2 className="text-2xl font-semibold mt-8 mb-2">5. Your Rights</h2>
+      <h2 className="text-2xl text-indigo-600 font-semibold mt-8 mb-2">5. Your Rights</h2>
       <p className="mb-4">
         You have full control over your data. You can update, delete, or request
         a copy of your information by contacting our support team. We respect
         your rights and will act on requests promptly.
       </p>
 
-      <h2 className="text-2xl font-semibold mt-8 mb-2">
+      <h2 className="text-2xl text-indigo-600 font-semibold mt-8 mb-2">
         6. Changes to This Policy
       </h2>
       <p className="mb-4">
@@ -67,6 +68,7 @@ const PrivacyPolicy = () => {
         If you have any questions or concerns regarding our Privacy Policy,
         please contact us through the platform.
       </p>
+    </div>
     </div>
   );
 };

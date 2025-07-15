@@ -44,7 +44,7 @@ const AllUsers = () => {
 
   return (
     <div className="p-6 max-w-6xl mx-auto">
-      <h2 className="text-3xl font-mono mb-6 text-center text-purple-700">
+      <h2 className="text-2xl  mb-6 text-center text-blue-700">
         Registered Users
       </h2>
 

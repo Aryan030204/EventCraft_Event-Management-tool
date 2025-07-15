@@ -46,8 +46,8 @@ const CreateEvent = () => {
   };
 
   return (
-    <div className="max-w-2xl mx-auto mt-10 bg-white shadow-md rounded-xl p-8">
-      <h2 className="text-3xl font-bold text-red-500 mb-6 text-center">
+    <div className="max-w-2xl mx-auto mt-10 bg-white shadow-xl rounded-xl p-8 mb-4">
+      <h2 className="text-3xl font-semibold text-center text-blue-600 mb-6">
         Create New Event
       </h2>
 
@@ -63,7 +63,7 @@ const CreateEvent = () => {
             value={formData.name}
             required
             onChange={handleChange}
-            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300"
+            className="w-full px-4 py-2 border border-gray-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-blue-600"
           />
         </div>
 
@@ -78,7 +78,7 @@ const CreateEvent = () => {
             required
             onChange={handleChange}
             rows={4}
-            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300"
+            className="w-full px-4 py-2 border border-gray-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-blue-600"
           />
         </div>
 
@@ -91,7 +91,7 @@ const CreateEvent = () => {
             name="type"
             value={formData.type}
             onChange={handleChange}
-            className="w-full px-4 py-2 border rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-blue-300"
+            className="w-full px-4 py-2 border border-gray-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-blue-600"
           >
             <option value="commercial">Commercial</option>
             <option value="education">Education</option>
@@ -113,7 +113,7 @@ const CreateEvent = () => {
               value={formData.startDate}
               required
               onChange={handleChange}
-              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300"
+              className="w-full px-4 py-2 border border-gray-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-blue-600"
             />
           </div>
 
@@ -127,7 +127,7 @@ const CreateEvent = () => {
               value={formData.endDate}
               required
               onChange={handleChange}
-              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300"
+              className="w-full px-4 py-2 border border-gray-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-blue-600"
             />
           </div>
         </div>
@@ -141,7 +141,7 @@ const CreateEvent = () => {
             value={formData.price}
             required
             onChange={handleChange}
-            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300"
+            className="w-full px-4 py-2 border border-gray-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-blue-600"
           />
         </div>
 
@@ -163,7 +163,7 @@ const CreateEvent = () => {
         {/* Submit Button */}
         <button
           type="submit"
-          className="w-full bg-blue-600 text-white font-semibold py-2.5 mt-2 rounded-lg hover:bg-blue-700 transition"
+          className="w-full bg-blue-600 text-white font-semibold py-2.5 mt-2 rounded-3xl hover:bg-blue-700 transition"
         >
           Create
         </button>

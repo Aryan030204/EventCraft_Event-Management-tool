@@ -2,8 +2,8 @@ import React from "react";
 
 const AboutUs = () => {
   return (
-    <div className="min-h-screen bg-gray-50 px-6 py-10 text-gray-800">
-      <div className="max-w-5xl mx-auto bg-white p-10 rounded-xl shadow-md">
+    <div className="min-h-screen bg-blue-50 px-6 py-10 text-gray-800">
+      <div className="max-w-5xl mx-auto bg-white p-10 rounded-3xl shadow-md">
         <h1 className="text-4xl font-bold text-center mb-6 text-indigo-600">
           About EventCraft
         </h1>
@@ -32,7 +32,7 @@ const AboutUs = () => {
         </h2>
         <ul className="list-disc pl-6 space-y-4 text-lg">
           <li>
-            <strong>Paras K. Aneja</strong> – The brains behind the backend, Paras engineered the server logic, route protection, and database models. He ensured secure communication, efficient query handling, and scalability across endpoints.
+            <strong>Paras Kumar</strong> – The brains behind the backend, Paras engineered the server logic, route protection, and database models. He ensured secure communication, efficient query handling, and scalability across endpoints.
           </li>
           <li>
             <strong>Aryan Arora</strong> – Aryan took the lead on frontend development and architectural planning. From crafting dynamic components to integrating APIs and routing logic, he made sure users get a seamless and responsive experience.

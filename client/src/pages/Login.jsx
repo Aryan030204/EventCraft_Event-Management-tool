@@ -28,7 +28,7 @@ const Login = () => {
         withCredentials: true,
       });
       console.log(res.data.user);
-      toast.success("logged in successfully");
+      toast.success("Logged in successfully!");
       localStorage.setItem("user", JSON.stringify(res.data.user));
       setTimeout(() => {
         navigate("/dashboard");
@@ -40,9 +40,9 @@ const Login = () => {
 
   return (
     <div className="flex items-center justify-center px-4">
-      <div className="bg-white shadow-2xl rounded-2xl p-8 sm:p-12 w-[30rem] max-w-md m-10">
-        <h2 className="text-3xl font-semibold text-center text-green-600 mb-6">
-          Login to your account
+      <div className="bg-white shadow-xl rounded-3xl p-8 sm:p-12 w-[30rem] max-w-md m-10">
+        <h2 className="text-3xl font-semibold text-center text-blue-600 mb-6">
+          Login to Your Account
         </h2>
 
         <form onSubmit={handleSubmit} className="space-y-6">
@@ -59,7 +59,7 @@ const Login = () => {
               required
               value={formData.email}
               onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
+              className="w-full px-4 py-2 border border-gray-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-blue-600"
               placeholder="example@email.com"
             />
           </div>
@@ -77,7 +77,7 @@ const Login = () => {
               required
               value={formData.password}
               onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
+              className="w-full px-4 py-2 border border-gray-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-blue-600"
               placeholder="••••••••"
             />
             {showPassword ? (
@@ -85,21 +85,21 @@ const Login = () => {
                 className="relative left-[20rem] bottom-[1.9rem] cursor-pointer"
                 onClick={() => setShowPassword(!showPassword)}
               >
-                <FaEyeSlash size={20} />
+                <FaEyeSlash size={20} className="text-blue-600 rounded-full"/>
               </div>
             ) : (
               <div
                 className="relative left-[20rem] bottom-[1.9rem] cursor-pointer"
                 onClick={() => setShowPassword(!showPassword)}
               >
-                <FaEye size={20} />
+                <FaEye size={20} className="text-blue-600 rounded-full" />
               </div>
             )}
           </div>
 
           <button
             type="submit"
-            className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2.5 rounded-lg transition duration-300"
+            className="cursor-pointer w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 rounded-3xl transition duration-300"
           >
             Login
           </button>
@@ -109,7 +109,7 @@ const Login = () => {
           Don’t have an account?{" "}
           <Link
             to="/signup"
-            className="text-green-600 hover:underline font-medium"
+            className="text-blue-600 hover:underline font-medium"
           >
             Sign up
           </Link>

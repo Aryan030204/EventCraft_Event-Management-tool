@@ -58,14 +58,14 @@ const Profile = () => {
   };
 
   return (
-    <div className="w-[25rem] h-fit mx-auto m-12 bg-white border border-purple-200 shadow-xl p-8 rounded-xl">
-      <h2 className="text-3xl font-semibold text-purple-700 mb-6 text-center">
+    <div className="w-[25rem] h-fit mx-auto m-12 p-8 sm:p-12 bg-white shadow-xl p-8 rounded-xl">
+      <h2 className="text-3xl font-semibold text-center text-blue-600 mb-6">
         Profile Details
       </h2>
 
       <form className="space-y-5">
         <div>
-          <label className="block text-sm font-medium text-purple-700 mb-1">
+          <label className="block text-sm font-medium text-blue-700 mb-1">
             First Name
           </label>
           <input
@@ -74,14 +74,14 @@ const Profile = () => {
             readOnly={!isEditing}
             value={user.firstName}
             onChange={handleChange}
-            className={`w-full px-4 py-2 border border-purple-300 rounded-md ${
+            className={`w-full px-4 py-2 border border-gray-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-blue-600 ${
               isEditing ? "bg-white" : "bg-gray-100"
             } text-gray-800 focus:outline-none`}
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-purple-700 mb-1">
+          <label className="block text-sm font-medium text-blue-700 mb-1">
             Last Name
           </label>
           <input
@@ -90,14 +90,14 @@ const Profile = () => {
             readOnly={!isEditing}
             value={user.lastName}
             onChange={handleChange}
-            className={`w-full px-4 py-2 border border-purple-300 rounded-md ${
+            className={`w-full px-4 py-2 border border-gray-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-blue-600 ${
               isEditing ? "bg-white" : "bg-gray-100"
             } text-gray-800 focus:outline-none`}
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-purple-700 mb-1">
+          <label className="block text-sm font-medium text-blue-700 mb-1">
             Role
           </label>
           {isEditing ? (
@@ -105,7 +105,7 @@ const Profile = () => {
               name="role"
               value={user.role}
               onChange={handleChange}
-              className="w-full px-4 py-2 border border-purple-300 rounded-md bg-white text-gray-800 focus:outline-none"
+              className="w-full px-4 py-2 border border-gray-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-blue-600"
             >
               <option value="attendee">Attendee</option>
               <option value="organizer">Organizer</option>
@@ -117,7 +117,7 @@ const Profile = () => {
               name="role"
               readOnly
               value={user.role}
-              className="w-full px-4 py-2 bg-gray-100 text-gray-800 border border-purple-300 rounded-md focus:outline-none"
+              className="w-full px-4 py-2 bg-gray-100 border border-gray-300 rounded-3xl focus:outline-none"
             />
           )}
         </div>
@@ -125,10 +125,10 @@ const Profile = () => {
         <button
           type="button"
           onClick={isEditing ? handleSave : () => setIsEditing(true)}
-          className={`w-full mt-4 font-semibold py-2.5 rounded-lg transition duration-300 ${
+          className={`w-full mt-4 font-semibold py-2.5 rounded-3xl cursor-pointer transition duration-300 ${
             isEditing
               ? "bg-green-600 hover:bg-green-700 text-white"
-              : "bg-purple-600 hover:bg-purple-700 text-white"
+              : "bg-blue-600 hover:bg-blue-700 text-white"
           }`}
         >
           {isEditing ? "Save" : "Update"}
@@ -136,7 +136,7 @@ const Profile = () => {
         <button
           type="button"
           onClick={handleDelete}
-          className="w-full bg-red-500 hover:bg-red-600 cursor-pointer text-white mt-4 font-semibold py-2.5 rounded-lg transition duration-300"
+          className="w-full bg-gray-100 border-2 border-red-500 hover:bg-red-500 hover:text-white cursor-pointer text-red-500 mt-4 font-semibold py-2.5 rounded-3xl transition duration-300"
         >
           Delete My Profile
         </button>

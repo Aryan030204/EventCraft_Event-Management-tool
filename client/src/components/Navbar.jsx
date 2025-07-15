@@ -10,7 +10,7 @@ import { CgProfile } from "react-icons/cg";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [user, setUser] = useState(null); // ✅ useState for user
+  const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -31,14 +31,14 @@ const Navbar = () => {
     );
 
     setIsLoggedIn(false);
-    setUser(null); // ✅ reset user state
+    setUser(null);
     localStorage.removeItem("user");
     toast.success("logged out successfully");
     navigate("/");
   };
 
   return (
-    <nav className="bg-blue-800 flex justify-between shadow-md z-50 w-full">
+    <nav className="bg-blue-700 flex justify-between shadow-md z-50 w-full">
       <div className="max-w-7xl mx-auto px-4 py-3 flex w-full items-center justify-between">
         {/* Logo / Title */}
         <div>
@@ -63,35 +63,35 @@ const Navbar = () => {
 
         {/* Right side */}
         <div className="hidden md:flex items-center gap-4">
-          {isLoggedIn && user && (
+          {isLoggedIn && user &&(
             <div className="flex items-center justify-center">
               <div className="flex gap-4 items-center justify-center w-[10rem] mx-8">
                 <Link to={"/profile"}>
-                  <CgProfile size={30} className="bg-white rounded-full" />
+                  <CgProfile size={35} className="text-white rounded-full" />
                 </Link>
                 <span className="relative top-1 text-white font-semibold mb-2">
-                  Hello, {user.firstName}
+                  Hello, {user.firstName}!
                 </span>
               </div>
               <button
                 onClick={handleLogout}
-                className="bg-red-500 p-1 font-semibold text-white rounded-sm hover:bg-red-600 cursor-pointer"
+                className="font-bold px-4 py-2 ml-4 border-2 border-white hover:bg-transparent hover:text-white bg-white text-blue-700 rounded-3xl transition"
               >
                 Logout
               </button>
               <Link
                 to={"/dashboard"}
-                className="ml-5 bg-white p-2 rounded-xl hover:bg-blue-950 hover:text-white font-bold transition ease-in-out duration-200"
+                className="text-white font-bold px-4 py-2 hover:underline"
                 element={<Dashboard />}
               >
-                Dashboard
+               Dashboard
               </Link>
             </div>
           )}
           {!isLoggedIn && (
             <Link
               to={"/login"}
-              className="text-white font-bold px-4 py-1.5 ml-4 hover:bg-red-600 bg-red-500 rounded-lg transition"
+              className="font-bold px-4 py-2 ml-4 border-2 border-white hover:bg-transparent hover:text-white bg-white text-blue-700 rounded-3xl transition"
             >
               Login
             </Link>

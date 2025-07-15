@@ -13,7 +13,7 @@ const Homepage = () => {
   }, []);
 
   return (
-    <div className="flex flex-col bg-blue-100">
+    <div className="flex flex-col bg-blue-50">
       <HeroSection user={user} />
       <Features />
     </div>

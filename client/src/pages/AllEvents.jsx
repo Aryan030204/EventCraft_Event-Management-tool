@@ -60,7 +60,7 @@ const AllEvents = () => {
 
   return (
     <div className="p-6">
-      <h2 className="text-5xl font-bold text-red-700 text-center m-8">
+      <h2 className="text-4xl font-bold text-blue-600 m-8">
         Your Scheduled Events
       </h2>
 
@@ -75,7 +75,7 @@ const AllEvents = () => {
             return (
               <div
                 key={event._id}
-                className="bg-yellow-100 shadow-xl border border-purple-200 rounded-xl w-[20rem] p-6 space-y-4 m-4"
+                className="bg-blue-50 shadow-xl border border-gray-200 rounded-2xl w-[20rem] p-6 space-y-4 m-4"
               >
                 <div className="space-y-2 text-sm text-gray-800">
                   <div>
@@ -85,7 +85,7 @@ const AllEvents = () => {
                         name="name"
                         value={editedEvent.name}
                         onChange={handleChange}
-                        className="w-full mt-1 px-2 py-1 border rounded-md"
+                        className="w-full mt-1 px-2 py-1 border rounded-3xl"
                       />
                     ) : (
                       <p>{event.name}</p>
@@ -100,7 +100,7 @@ const AllEvents = () => {
                         type="date"
                         value={editedEvent.startDate?.slice(0, 10)}
                         onChange={handleChange}
-                        className="w-full mt-1 px-2 py-1 border rounded-md"
+                        className="w-full mt-1 px-2 py-1 border rounded-3xl"
                       />
                     ) : (
                       <p>{new Date(event.startDate).toLocaleDateString()}</p>
@@ -115,7 +115,7 @@ const AllEvents = () => {
                         type="date"
                         value={editedEvent.endDate?.slice(0, 10)}
                         onChange={handleChange}
-                        className="w-full mt-1 px-2 py-1 border rounded-md"
+                        className="w-full mt-1 px-2 py-1 border rounded-3xl"
                       />
                     ) : (
                       <p>{new Date(event.endDate).toLocaleDateString()}</p>
@@ -130,7 +130,7 @@ const AllEvents = () => {
                         type="number"
                         value={editedEvent.price}
                         onChange={handleChange}
-                        className="w-full mt-1 px-2 py-1 border rounded-md"
+                        className="w-full mt-1 px-2 py-1 border rounded-3xl"
                       />
                     ) : (
                       <p>₹{event.price}</p>
@@ -144,7 +144,7 @@ const AllEvents = () => {
                         name="type"
                         value={editedEvent.type}
                         onChange={handleChange}
-                        className="w-full mt-1 px-2 py-1 border rounded-md"
+                        className="w-full mt-1 px-2 py-1 border rounded-3xl"
                       >
                         <option value="commercial">Commercial</option>
                         <option value="education">Education</option>
@@ -184,21 +184,21 @@ const AllEvents = () => {
                   {isEditing ? (
                     <button
                       onClick={() => handleSave(event._id)}
-                      className="flex-1 bg-purple-600 hover:bg-purple-700 text-white py-2 rounded-md font-semibold"
+                      className="flex-1 bg-green-600 hover:bg-green-700 text-white w-full mt-4 font-semibold py-2.5 rounded-3xl cursor-pointer transition duration-300"
                     >
                       Save
                     </button>
                   ) : (
                     <button
                       onClick={() => handleEdit(event)}
-                      className="flex-1 bg-purple-500 hover:bg-purple-600 text-white py-2 rounded-md font-semibold"
+                      className="flex-1 bg-blue-600 hover:bg-blue-700 text-white w-full mt-4 font-semibold py-2.5 rounded-3xl cursor-pointer transition duration-300"
                     >
                       Update
                     </button>
                   )}
                   <button
                     onClick={() => handleDelete(event._id)}
-                    className="flex-1 bg-red-500 hover:bg-red-600 text-white py-2 rounded-md font-semibold"
+                    className="flex-1 bg-red-600 hover:bg-red-700 text-white py-2.5 w-full mt-4 rounded-3xl font-semibold cursor-pointer transition duration-300"
                   >
                     Delete
                   </button>

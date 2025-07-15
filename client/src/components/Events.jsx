@@ -66,7 +66,7 @@ const Events = () => {
           <button
             key={type}
             onClick={() => setFilterType(type)}
-            className={`px-4 py-2 rounded-lg text-sm font-medium capitalize ${
+            className={`px-4 py-2 rounded-3xl text-sm font-medium capitalize ${
               filterType === type
                 ? "bg-blue-600 text-white"
                 : "bg-gray-200 text-gray-700"

@@ -75,7 +75,7 @@ const Analytics = () => {
 
   return (
     <div className="mx-auto p-6 bg-white shadow-lg rounded-xl mt-10 border border-purple-200 w-[50rem]">
-      <h2 className="text-3xl font-mono text-center mb-6">
+      <h2 className="text-2xl text-blue-700 text-center mb-6">
         Platform Analytics Overview
       </h2>
       <ul className="flex gap-5 justify-center items-center w-full m-5">

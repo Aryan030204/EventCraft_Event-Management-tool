@@ -44,7 +44,7 @@ const EventCard = ({ event, onBook, isBooked }) => {
           <Link
             to={`/feedback/${_id}`}
             target="_blank"
-            className="bg-purple-800 hover:bg-purple-900 text-white font-bold p-2 inline-block text-sm rounded-lg text-center"
+            className="bg-blue-600 hover:bg-blue-700 text-white font-bold p-2 inline-block text-sm rounded-3xl text-center"
           >
             Give Feedback
           </Link>
@@ -63,7 +63,7 @@ const EventCard = ({ event, onBook, isBooked }) => {
       {isBooked ? (
         <button
           onClick={() => onCancel()}
-          className="mt-5 w-full py-2 px-4 text-white font-semibold rounded-lg transition bg-red-600 hover:bg-red-700"
+          className="mt-5 w-full bg-gray-100 border-2 border-red-500 hover:bg-red-500 hover:text-white cursor-pointer text-red-500 mt-4 font-semibold py-2.5 rounded-3xl transition"
         >
           Cancel Ticket
         </button>
@@ -71,7 +71,7 @@ const EventCard = ({ event, onBook, isBooked }) => {
         <button
           onClick={() => onBook(_id)}
           disabled={!registrations}
-          className={`mt-5 w-full py-2 px-4 text-white font-semibold rounded-lg transition ${
+          className={`mt-5 w-full py-2 px-4 text-white font-semibold rounded-3xl transition ${
             registrations
               ? "bg-blue-600 hover:bg-blue-700"
               : "bg-gray-400 cursor-not-allowed"
