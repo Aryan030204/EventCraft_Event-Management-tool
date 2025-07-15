@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import SERVER_URI from "../utils/constants";
+import {PRODUCTION_URI} from "../utils/constants";
 import { toast, ToastContainer } from "react-toastify";
 
 const Feedback = () => {
@@ -10,7 +10,7 @@ const Feedback = () => {
   const id = useParams().eventid;
 
   const getEvent = async () => {
-    const res = await axios.get(SERVER_URI + `/events/${id}`, {
+    const res = await axios.get(PRODUCTION_URI + `/events/${id}`, {
       withCredentials: true,
     });
     setData(res.data.event);
@@ -22,7 +22,7 @@ const Feedback = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await axios.post(
-      SERVER_URI + `/event/${data._id}/feedback/submit`,
+      PRODUCTION_URI + `/event/${data._id}/feedback/submit`,
       {},
       {
         withCredentials: true,

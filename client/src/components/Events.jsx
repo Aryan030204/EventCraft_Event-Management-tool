@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import SERVER_URI from "../utils/constants";
+import {PRODUCTION_URI} from "../utils/constants";
 import EventCard from "./EventCard";
 import BookingForm from "./BookingForm"; // import the form component
 
@@ -14,7 +14,7 @@ const Events = () => {
 
   const fetchEvents = async () => {
     try {
-      const res = await axios.get(SERVER_URI + "/events/discover", {
+      const res = await axios.get(PRODUCTION_URI + "/events/discover", {
         withCredentials: true,
       });
       setEvents(res.data.events);

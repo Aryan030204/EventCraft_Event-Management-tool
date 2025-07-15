@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import SERVER_URI from "../utils/constants";
+import {PRODUCTION_URI} from "../utils/constants";
 
 const AllEvents = () => {
   const [events, setEvents] = useState([]);
@@ -9,7 +9,7 @@ const AllEvents = () => {
 
   const fetchEvents = async () => {
     try {
-      const res = await axios.get(`${SERVER_URI}/me/events/scheduled`, {
+      const res = await axios.get(`${PRODUCTION_URI}/me/events/scheduled`, {
         withCredentials: true,
       });
       setEvents(res.data.events);
@@ -20,7 +20,7 @@ const AllEvents = () => {
 
   const handleDelete = async (eventId) => {
     try {
-      await axios.delete(`${SERVER_URI}/event/${eventId}`, {
+      await axios.delete(`${PRODUCTION_URI}/event/${eventId}`, {
         withCredentials: true,
       });
       setEvents(events.filter((e) => e._id !== eventId));
@@ -36,7 +36,7 @@ const AllEvents = () => {
 
   const handleSave = async (eventId) => {
     try {
-      await axios.put(`${SERVER_URI}/event/${eventId}`, editedEvent, {
+      await axios.put(`${PRODUCTION_URI}/event/${eventId}`, editedEvent, {
         withCredentials: true,
       });
       setEditingEventId(null);

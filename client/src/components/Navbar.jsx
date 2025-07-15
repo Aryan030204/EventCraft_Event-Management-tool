@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import logo from "../assets/logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import SERVER_URI from "../utils/constants";
+import {PRODUCTION_URI} from "../utils/constants";
 import { toast, ToastContainer } from "react-toastify";
 import Dashboard from "../pages/Dashboard";
 import { CgProfile } from "react-icons/cg";
@@ -23,7 +23,7 @@ const Navbar = () => {
 
   const handleLogout = async () => {
     await axios.post(
-      SERVER_URI + "/auth/logout",
+      PRODUCTION_URI + "/auth/logout",
       {},
       {
         withCredentials: true,
