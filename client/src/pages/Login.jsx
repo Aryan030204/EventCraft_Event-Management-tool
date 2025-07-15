@@ -3,7 +3,7 @@ import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { toast, ToastContainer } from "react-toastify";
 import {PRODUCTION_URI} from "../utils/constants";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -107,12 +107,12 @@ const Login = () => {
 
         <p className="mt-6 text-sm text-center text-gray-600">
           Don’t have an account?{" "}
-          <a
-            href="/signup"
+          <Link
+            to="/signup"
             className="text-green-600 hover:underline font-medium"
           >
             Sign up
-          </a>
+          </Link>
         </p>
       </div>
       <ToastContainer />
