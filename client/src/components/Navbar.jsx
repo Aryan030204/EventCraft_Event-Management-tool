@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import logo from "../assets/logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import {PRODUCTION_URI} from "../utils/constants";
+import { PRODUCTION_URI } from "../utils/constants";
 import { toast, ToastContainer } from "react-toastify";
 import Dashboard from "../pages/Dashboard";
 import { CgProfile } from "react-icons/cg";
@@ -111,9 +111,14 @@ const Navbar = () => {
             </Link>
             {isLoggedIn && user && (
               <>
-                <span className="block text-white font-semibold mb-2 w-[8rem]">
-                  Hello, {user.firstName}
-                </span>
+                <div className="flex flex-col gap-4 items-center justify-center w-[10rem] mx-8">
+                  <Link to={"/profile"}>
+                    <CgProfile size={30} className="bg-white rounded-full" />
+                  </Link>
+                  <span className="relative top-1 text-white font-semibold mb-2">
+                    Hello, {user.firstName}
+                  </span>
+                </div>
                 <button
                   onClick={handleLogout}
                   className="bg-red-500 p-2 font-semibold text-white rounded-sm hover:bg-red-600 cursor-pointer"
@@ -123,7 +128,7 @@ const Navbar = () => {
               </>
             )}
             {!isLoggedIn && (
-              <Link to={"/signup"} className="hover:underline">
+              <Link to={"/login"} className="hover:underline">
                 Login
               </Link>
             )}
