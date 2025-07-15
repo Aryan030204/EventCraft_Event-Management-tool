@@ -1,6 +1,7 @@
 import axios from "axios";
 import React from "react";
-import {PRODUCTION_URI} from "../utils/constants";
+import { PRODUCTION_URI } from "../utils/constants";
+import { toast, ToastContainer } from "react-toastify";
 
 const BookingForm = ({ event, user, onBookSuccess }) => {
   const handleSubmit = async (e) => {
@@ -12,11 +13,13 @@ const BookingForm = ({ event, user, onBookSuccess }) => {
         { withCredentials: true }
       );
       console.log(res.data);
+      toast.success(res.data.message);
       if (onBookSuccess) {
         onBookSuccess(event._id);
       }
     } catch (err) {
-      console.error("Booking failed:", err.message);
+      console.log("Booking failed:", err.message);
+      toast.error(err.message);
     }
   };
   return (
@@ -25,10 +28,7 @@ const BookingForm = ({ event, user, onBookSuccess }) => {
         Book Your Ticket
       </h2>
 
-      <form
-        onSubmit={handleSubmit}
-        className="space-y-5"
-      >
+      <form onSubmit={handleSubmit} className="space-y-5">
         <div>
           <label className="block text-sm font-medium text-blue-600 mb-1">
             Event Name
@@ -98,6 +98,7 @@ const BookingForm = ({ event, user, onBookSuccess }) => {
           Book
         </button>
       </form>
+      <ToastContainer />
     </div>
   );
 };
