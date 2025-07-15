@@ -69,13 +69,13 @@ const AllEvents = () => {
           You have not scheduled any events yet.
         </h3>
       ) : (
-        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-5">
           {events.map((event) => {
             const isEditing = editingEventId === event._id;
             return (
               <div
                 key={event._id}
-                className="bg-yellow-100 shadow-xl border border-purple-200 rounded-xl w-[20rem] p-6 space-y-4"
+                className="bg-yellow-100 shadow-xl border border-purple-200 rounded-xl w-[20rem] p-6 space-y-4 m-4"
               >
                 <div className="space-y-2 text-sm text-gray-800">
                   <div>
