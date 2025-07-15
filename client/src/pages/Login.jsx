@@ -31,7 +31,7 @@ const Login = () => {
       toast.success("logged in successfully");
       localStorage.setItem("user", JSON.stringify(res.data.user));
       setTimeout(() => {
-        navigate("/");
+        navigate("/dashboard");
       }, 2000);
     } catch (err) {
       toast.error(err.message);
