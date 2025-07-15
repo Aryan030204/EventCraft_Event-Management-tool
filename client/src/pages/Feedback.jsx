@@ -9,7 +9,7 @@ const Feedback = () => {
   const id = useParams().eventid;
 
   const getEvent = async () => {
-    const res = await axios.get(SERVER_URI + `/events/${id}`, {
+    const res = await axios.get(PRODUCTION_URI + `/events/${id}`, {
       withCredentials: true,
     });
     setData(res.data.event);
@@ -21,7 +21,7 @@ const Feedback = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await axios.post(
-      SERVER_URI + `/event/${data._id}/feedback/submit`,
+      PRODUCTION_URI + `/event/${data._id}/feedback/submit`,
       {},
       {
         withCredentials: true,

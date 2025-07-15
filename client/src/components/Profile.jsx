@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import {SERVER_URI} from "../utils/constants";
+import {PRODUCTION_URI} from "../utils/constants";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
@@ -34,7 +34,7 @@ const Profile = () => {
 
   const handleSave = async () => {
     try {
-      const res = await axios.put(`${SERVER_URI}/profile`, user, {
+      const res = await axios.put(`${PRODUCTION_URI}/profile`, user, {
         withCredentials: true,
       });
       localStorage.setItem("user", JSON.stringify(res.data.user));
@@ -46,7 +46,7 @@ const Profile = () => {
   };
 
   const handleDelete = async () => {
-    await axios.delete(SERVER_URI + "/profile", {
+    await axios.delete(PRODUCTION_URI + "/profile", {
       withCredentials: true,
     });
     localStorage.removeItem("user");
