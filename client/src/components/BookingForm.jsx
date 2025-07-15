@@ -12,7 +12,6 @@ const BookingForm = ({ event, user, onBookSuccess }) => {
         {},
         { withCredentials: true }
       );
-      console.log(res.data);
       toast.success(res.data.message);
       if (onBookSuccess) {
         onBookSuccess(event._id);

@@ -38,7 +38,6 @@ const CreateEvent = () => {
         registrations: true,
         type: "commercial",
       });
-      console.log(res.data);
     } catch (err) {
       console.error("Error creating event:", err);
       toast.error("Failed to create event.");

@@ -27,12 +27,10 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     // Send signup request here
-    console.log("Signing up with:", formData);
     try {
       const res = await axios.post(PRODUCTION_URI + "/auth/signup", formData, {
         withCredentials: true,
       });
-      console.log(res);
       setFormData({
         firstName: "",
         lastName: "",

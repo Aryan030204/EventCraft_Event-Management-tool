@@ -22,12 +22,10 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Logging in with:", formData);
     try {
       const res = await axios.post(PRODUCTION_URI + "/auth/login", formData, {
         withCredentials: true,
       });
-      console.log(res.data.user);
       toast.success("Logged in successfully!");
       localStorage.setItem("user", JSON.stringify(res.data.user));
       setTimeout(() => {

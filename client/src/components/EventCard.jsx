@@ -7,7 +7,6 @@ const EventCard = ({ event, onBook, isBooked }) => {
   const { _id, name, startDate, endDate, price, registrations } = event;
   const [ended, setEnded] = useState(false);
   const user = JSON.parse(localStorage.getItem("user"));
-  console.log(event.ticketsBooked);
 
   useEffect(() => {
     const today = new Date();
