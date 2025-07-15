@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import {PRODUCTION_URI} from "../utils/constants";
+import {SERVER_URI} from "../utils/constants";
 import { FaStar } from "react-icons/fa6";
 
 const AllUsers = () => {
   const [users, setUsers] = useState([]);
   const fetchUsers = async () => {
     try {
-      const res = await axios.get(`${PRODUCTION_URI}/users/all`, {
+      const res = await axios.get(`${SERVER_URI}/users/all`, {
         withCredentials: true,
       });
 
@@ -22,7 +22,7 @@ const AllUsers = () => {
 
   const handlePromote = async (userId) => {
     await axios.patch(
-      PRODUCTION_URI + `/users/${userId}/promote`,
+      SERVER_URI + `/users/${userId}/promote`,
       {},
       {
         withCredentials: true,
@@ -33,7 +33,7 @@ const AllUsers = () => {
 
   const handleReport = async (userId) => {
     await axios.patch(
-      PRODUCTION_URI + `/users/${userId}/report`,
+      SERVER_URI + `/users/${userId}/report`,
       {},
       {
         withCredentials: true,

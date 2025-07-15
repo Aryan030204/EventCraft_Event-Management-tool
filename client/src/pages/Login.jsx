@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { toast, ToastContainer } from "react-toastify";
-import {PRODUCTION_URI} from "../utils/constants";
+import {SERVER_URI} from "../utils/constants";
 import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
@@ -24,7 +24,7 @@ const Login = () => {
     e.preventDefault();
     console.log("Logging in with:", formData);
     try {
-      const res = await axios.post(PRODUCTION_URI + "/auth/login", formData, {
+      const res = await axios.post(SERVER_URI + "/auth/login", formData, {
         withCredentials: true,
       });
       console.log(res.data.user);

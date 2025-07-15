@@ -1,5 +1,5 @@
 import axios from "axios";
-import {PRODUCTION_URI} from "../utils/constants";
+import {SERVER_URI} from "../utils/constants";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -18,7 +18,7 @@ const EventCard = ({ event, onBook, isBooked }) => {
   }, []);
 
   const onCancel = async () => {
-    await axios.delete(PRODUCTION_URI + `/ticket/${event._id}/cancel`, {
+    await axios.delete(SERVER_URI + `/ticket/${event._id}/cancel`, {
       withCredentials: true,
     });
   };

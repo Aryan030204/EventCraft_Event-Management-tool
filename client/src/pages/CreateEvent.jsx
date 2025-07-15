@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import {PRODUCTION_URI} from "../utils/constants";
+import {SERVER_URI} from "../utils/constants";
 import { toast, ToastContainer } from "react-toastify";
 
 const CreateEvent = () => {
@@ -25,7 +25,7 @@ const CreateEvent = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(`${PRODUCTION_URI}/event/create`, formData, {
+      const res = await axios.post(`${SERVER_URI}/event/create`, formData, {
         withCredentials: true,
       });
       toast.success("Event created successfully!");

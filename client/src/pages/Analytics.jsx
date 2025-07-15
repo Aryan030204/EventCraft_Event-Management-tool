@@ -13,7 +13,7 @@ import {
   LinearScale,
 } from "chart.js";
 import axios from "axios";
-import {PRODUCTION_URI} from "../utils/constants";
+import {SERVER_URI} from "../utils/constants";
 
 ChartJS.register(
   ArcElement,
@@ -40,7 +40,7 @@ const Analytics = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await axios.get(PRODUCTION_URI + "/analytics", {
+      const res = await axios.get(SERVER_URI + "/analytics", {
         withCredentials: true,
       });
       setAnalytics({
