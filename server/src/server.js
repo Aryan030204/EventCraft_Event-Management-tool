@@ -19,7 +19,7 @@ const app = express();
 // Middleware
 app.use(
   cors({
-    origin: ["https://event-craft-event-management-tool.vercel.app"],
+    origin: ["https://event-craft-event-management-tool-ia5a9qiw0.vercel.app"],
     credentials: true,
   })
 );
