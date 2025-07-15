@@ -5,17 +5,22 @@ import axios from "axios";
 import SERVER_URI from "../utils/constants";
 import { toast, ToastContainer } from "react-toastify";
 import Dashboard from "../pages/Dashboard";
+import { CgProfile } from "react-icons/cg";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  let user = JSON.parse(localStorage.getItem("user"));
+  const [user, setUser] = useState(null); // ✅ useState for user
+
   useEffect(() => {
-    if (user) {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
       setIsLoggedIn(true);
     }
   }, []);
-  const handleLogout = async (req, res) => {
+
+  const handleLogout = async () => {
     await axios.post(
       SERVER_URI + "/auth/logout",
       {},
@@ -23,7 +28,9 @@ const Navbar = () => {
         withCredentials: true,
       }
     );
-    setIsLoggedIn(!isLoggedIn);
+
+    setIsLoggedIn(false);
+    setUser(null); // ✅ reset user state
     localStorage.removeItem("user");
     toast.success("logged out successfully");
   };
@@ -54,18 +61,29 @@ const Navbar = () => {
 
         {/* Right side */}
         <div className="hidden md:flex items-center gap-4">
-          {isLoggedIn && (
+          {isLoggedIn && user && (
             <div className="flex items-center justify-center">
-              <span className=" text-white font-semibold mb-2 w-[8rem]">
-                Hello, {user.firstName}
-              </span>
+              <div className="flex gap-4 items-center justify-center w-[10rem] mx-8">
+                <Link to={"/profile"}>
+                  <CgProfile size={30} className="bg-white rounded-full" />
+                </Link>
+                <span className="relative top-1 text-white font-semibold mb-2">
+                  Hello, {user.firstName}
+                </span>
+              </div>
               <button
-                onClick={() => handleLogout()}
+                onClick={handleLogout}
                 className="bg-red-500 p-1 font-semibold text-white rounded-sm hover:bg-red-600 cursor-pointer"
               >
                 Logout
               </button>
-              <Link to={"/dashboard"} className="ml-5 bg-white p-2 rounded-xl hover:bg-blue-950 hover:text-white font-bold transition ease-in-out duration-200" element={<Dashboard/>}>Dashboard</Link>
+              <Link
+                to={"/dashboard"}
+                className="ml-5 bg-white p-2 rounded-xl hover:bg-blue-950 hover:text-white font-bold transition ease-in-out duration-200"
+                element={<Dashboard />}
+              >
+                Dashboard
+              </Link>
             </div>
           )}
           {!isLoggedIn && (
@@ -77,8 +95,6 @@ const Navbar = () => {
             </Link>
           )}
         </div>
-
-        {/* Mobile Hamburger */}
       </div>
 
       {/* Mobile Dropdown */}
@@ -91,13 +107,13 @@ const Navbar = () => {
             <Link>
               <li className="hover:underline">Privacy Policy</li>
             </Link>
-            {isLoggedIn && (
+            {isLoggedIn && user && (
               <>
                 <span className="block text-white font-semibold mb-2 w-[8rem]">
                   Hello, {user.firstName}
                 </span>
                 <button
-                  onClick={() => handleLogout()}
+                  onClick={handleLogout}
                   className="bg-red-500 p-2 font-semibold text-white rounded-sm hover:bg-red-600 cursor-pointer"
                 >
                   Logout
@@ -112,6 +128,8 @@ const Navbar = () => {
           </ul>
         </div>
       )}
+
+      {/* Mobile Hamburger */}
       <div className="md:hidden self-center mr-2">
         <button onClick={() => setIsOpen(!isOpen)}>
           <svg
@@ -139,6 +157,7 @@ const Navbar = () => {
           </svg>
         </button>
       </div>
+
       <ToastContainer />
     </nav>
   );

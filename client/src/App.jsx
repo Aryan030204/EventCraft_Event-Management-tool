@@ -10,6 +10,7 @@ import Dashboard from "./pages/Dashboard";
 import Feedback from "./pages/Feedback";
 import CreateEvent from "./pages/CreateEvent";
 import AllEvents from "./pages/AllEvents";
+import Profile from "./components/Profile";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
             <Route path="/feedback/:eventid" element={<Feedback />} />
             <Route path="/schedule" element={<CreateEvent />} />
             <Route path="/organizer/events" element={<AllEvents />} />
+            <Route path="/profile" element={<Profile />} />
           </Routes>
         </main>
         <Footer />
