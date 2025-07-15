@@ -1,6 +1,7 @@
 const Event = require("../models/Event");
 const Feedback = require("../models/Feedback");
 const Ticket = require("../models/Ticket");
+const sendMail = require("../utils/mailer");
 
 const discoverAllEvents = async (req, res) => {
   try {
@@ -22,9 +23,11 @@ const discoverAllEvents = async (req, res) => {
 const bookTicket = async (req, res) => {
   try {
     const { eventId } = req.params;
-    const { _id } = req.user;
+    const { _id, email } = req.user;
+    // console.log(req.user);
+
     const event = await Event.findById(eventId);
-    console.log(event);
+    // console.log(event);
 
     if (!event) {
       return res.status(400).json({
@@ -53,6 +56,11 @@ const bookTicket = async (req, res) => {
     });
     event.ticketsBooked.push(_id);
     await event.save();
+    await sendMail(
+      email,
+      "Event Booking Confirmation",
+      `You have successfully booked ${event.name} event on ${event.startDate} to ${event.endDate}: ${event}`
+    );
     res.status(201).json({
       success: true,
       message: "Ticket booked successfully",
