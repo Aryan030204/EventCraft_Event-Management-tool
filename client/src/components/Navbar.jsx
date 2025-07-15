@@ -98,24 +98,25 @@ const Navbar = () => {
           )}
         </div>
       </div>
+      {/* mobile view */}
 
-      {/* Mobile Dropdown */}
       {isOpen && (
-        <div className="md:hidden px-4 pb-4 h-[12rem] flex flex-col justify-center w-full transition duration-200 ease-in-out">
+        <div className="md:hidden px-4 pb-4 flex flex-col justify-center w-full transition duration-200 ease-in-out">
           <ul className="flex flex-col text-center gap-3 text-white font-medium">
-            <Link>
+            <Link to="/about">
               <li className="hover:underline">About Us</li>
             </Link>
-            <Link>
+            <Link to="/policy">
               <li className="hover:underline">Privacy Policy</li>
             </Link>
+
             {isLoggedIn && user && (
               <>
-                <div className="flex flex-col gap-4 items-center justify-center w-[10rem] mx-8">
-                  <Link to={"/profile"}>
+                <div className="flex flex-col gap-4 items-center justify-center">
+                  <Link to="/profile">
                     <CgProfile size={30} className="bg-white rounded-full" />
                   </Link>
-                  <span className="relative top-1 text-white font-semibold mb-2">
+                  <span className="text-white font-semibold">
                     Hello, {user.firstName}
                   </span>
                 </div>
@@ -127,9 +128,10 @@ const Navbar = () => {
                 </button>
               </>
             )}
+
             {!isLoggedIn && (
-              <Link to={"/login"} className="hover:underline">
-                Login
+              <Link to="/login">
+                <li className="hover:underline">Login</li>
               </Link>
             )}
           </ul>
