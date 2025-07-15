@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import {PRODUCTION_URI} from "../utils/constants";
 import { toast, ToastContainer } from "react-toastify";
 
 const Feedback = () => {
