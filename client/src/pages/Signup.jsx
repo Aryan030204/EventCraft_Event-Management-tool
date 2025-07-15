@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import axios from "axios";
-import { PRODUCTION_URI } from "../utils/constants";
+import { SERVER_URI } from "../utils/constants";
 import { toast, ToastContainer } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
@@ -29,7 +29,7 @@ const Signup = () => {
     // Send signup request here
     console.log("Signing up with:", formData);
     try {
-      const res = await axios.post(PRODUCTION_URI + "/auth/signup", formData, {
+      const res = await axios.post(SERVER_URI + "/auth/signup", formData, {
         withCredentials: true,
       });
       console.log(res);

@@ -1,13 +1,13 @@
 import axios from "axios";
 import React from "react";
-import {PRODUCTION_URI} from "../utils/constants";
+import {SERVER_URI} from "../utils/constants";
 
 const BookingForm = ({ event, user, onBookSuccess }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const res = await axios.post(
-        PRODUCTION_URI + `/ticket/${event._id}/book`,
+        SERVER_URI + `/ticket/${event._id}/book`,
         {},
         { withCredentials: true }
       );
