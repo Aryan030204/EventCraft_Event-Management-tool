@@ -63,7 +63,7 @@ const Navbar = () => {
 
         {/* Right side */}
         <div className="hidden md:flex items-center gap-4">
-          {isLoggedIn && user &&(
+          {isLoggedIn && user && (
             <div className="flex items-center justify-center">
               <div className="flex gap-4 items-center justify-center w-[10rem] mx-8">
                 <Link to={"/profile"}>
@@ -84,7 +84,7 @@ const Navbar = () => {
                 className="text-white font-bold px-4 py-2 hover:underline"
                 element={<Dashboard />}
               >
-               Dashboard
+                Dashboard
               </Link>
             </div>
           )}
@@ -126,6 +126,13 @@ const Navbar = () => {
                 >
                   Logout
                 </button>
+                <Link
+                  to={"/dashboard"}
+                  className="text-white font-bold px-4 py-2 hover:underline ring-2 ring-white"
+                  element={<Dashboard />}
+                >
+                  Dashboard
+                </Link>
               </>
             )}
 
